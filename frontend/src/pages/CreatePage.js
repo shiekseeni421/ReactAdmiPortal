@@ -2,7 +2,10 @@ import React from "react";
 import Navbar from "../component/Navbar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import Button from "react-bootstrap/Button";
 
 import "./index.scss";
 
@@ -15,14 +18,23 @@ function CreatePage() {
     handleSubmit,
   } = useForm();
   const onSubmit = (data) => {
+    let createDate = moment().format("MMMM Do YYYY, h:mm a"); // June 28th 2023, 10:48:40 am    ;
+    data.createdAt = createDate;
+    data.updatedAt = createDate;
     axios
       .post("http://localhost:8080/createuser", data)
       .then((res) => {
-        alert(res.data.message);
-        navigate("/homepage");
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        setTimeout(() => {
+          navigate("/homepage");
+        }, 3000);
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        toast.error(err.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       });
   };
   return (
@@ -107,8 +119,10 @@ function CreatePage() {
               <p role="alert">description is required</p>
             )}
           </div>
-
-          <input type="submit" className="submit" />
+          <Button variant="danger" className="submit" type="submit">
+            Submit
+          </Button>
+          <ToastContainer />
         </form>
       </div>
     </div>

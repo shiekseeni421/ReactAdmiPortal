@@ -5,6 +5,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function HomePage() {
   let [mainData, setMainData] = useState([]);
@@ -34,8 +35,10 @@ function HomePage() {
     axios
       .delete(`http://localhost:8080/deleteproject/${id}`)
       .then((res) => {
+        toast.success("delete successful", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         setMainData(res.data.userdeatils);
-        alert("delete successful ");
       })
       .catch((err) => {
         alert(err.data.message);
@@ -76,7 +79,7 @@ function HomePage() {
                           viewItem(item.projectId);
                         }}
                       >
-                        Read
+                        View
                       </Button>
                       <Button
                         variant="primary"
@@ -94,6 +97,7 @@ function HomePage() {
                       >
                         Delete
                       </Button>
+                      <ToastContainer />
                     </td>
                   </tr>
                 );

@@ -5,7 +5,16 @@ const adminSchema = require("../modal/adminSchema");
 
 //create Api
 adminRouter.post("/createuser", async (req, res) => {
-  const { appCode, projectId, modelId, version, title, description } = req.body;
+  const {
+    appCode,
+    projectId,
+    modelId,
+    version,
+    title,
+    description,
+    createdAt,
+    updatedAt,
+  } = req.body;
   if (appCode == null) {
     return res.status(400).json({ error: "Please provide appCode" });
   } else if (projectId == null) {
@@ -19,13 +28,6 @@ adminRouter.post("/createuser", async (req, res) => {
   } else if (description == null) {
     return res.status(400).json({ error: "Please provide description" });
   }
-
-  let date = new Date();
-  let fulldate = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()} min`;
-  let createdAt = fulldate;
-  let updatedAt = fulldate;
 
   const userdeatils = await adminSchema.findOne({ projectId: projectId });
   if (userdeatils === null) {
@@ -43,12 +45,12 @@ adminRouter.post("/createuser", async (req, res) => {
       if (err) {
         res.json(err);
       } else {
-        res.status(200).json({ message: "Create Details Successful" });
+        res.status(200).json({ message: "Project add Successful " });
       }
     });
   } else {
     return res.status(302).json({
-      message: "project details already exits please add new Project number",
+      message: "Project Id Already Exits Please Add New Project Id",
     });
   }
 });
@@ -63,7 +65,6 @@ adminRouter.get("/userData", async (req, res) => {
 adminRouter.delete("/deleteproject/:id", async (req, res) => {
   var { id } = req.params;
   console.log(id);
-
   const query = { projectId: id };
   const result = await adminSchema.deleteOne(query);
 
@@ -84,14 +85,11 @@ adminRouter.get("/userData/:projectId", async (req, res) => {
   res.status(200).json({ userdeatils });
 });
 
-//view API
+//Update Api
 adminRouter.put("/upDate/:Id", async (req, res) => {
   var { Id } = req.params;
-  var { appCode, projectId, modelId, version, title, description } = req.body;
-  let date = new Date();
-  let updatedAt = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()} min`;
+  var { appCode, projectId, modelId, version, title, description, updatedAt } =
+    req.body;
 
   const userdeatils = await adminSchema.updateOne(
     { projectId: Id },

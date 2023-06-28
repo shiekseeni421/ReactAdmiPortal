@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import moment from "moment";
 import "./index.scss";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function UpdatePage() {
   let [data, setData] = useState({});
@@ -23,9 +24,15 @@ function UpdatePage() {
     });
   }, []);
   const onSubmit = (data) => {
+    let createDate = moment().format("MMMM Do YYYY, h:mm a"); // June 28th 2023, 10:48:40 am    ;
+    data.updatedAt = createDate;
     axios.put(`http://localhost:8080/upDate/${projectId}`, data).then((res) => {
-      alert(res.data.message);
-      navigate("/homepage");
+      toast.success(res.data.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      setTimeout(() => {
+        navigate("/homepage");
+      }, 3000);
     });
   };
   return (
@@ -48,19 +55,6 @@ function UpdatePage() {
             )}
           </div>
 
-          <div className="input-container">
-            <label className="lable">Project Id</label>
-            <input
-              defaultValue={data.projectId}
-              className="input"
-              placeholder="Project Id"
-              {...register("projectId", { required: true })}
-              aria-invalid={errors.projectId ? "true" : "false"}
-            />
-            {errors.projectId?.type === "required" && (
-              <p role="alert">Project Id is required</p>
-            )}
-          </div>
           <div className="input-container">
             <label className="lable">Model Id</label>
             <input
@@ -117,6 +111,7 @@ function UpdatePage() {
           </div>
 
           <input type="submit" className="submit" />
+          <ToastContainer />
         </form>
       </div>
     </div>

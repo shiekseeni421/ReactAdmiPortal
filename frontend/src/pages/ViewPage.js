@@ -22,39 +22,48 @@ function ViewPage() {
   return (
     <div className="viewPageCont">
       <Navbar portalName="View page" colorCode="#b103fc" textColor="#ffffff" />
-      <div className="ViewCard">
-        <div className="d-flex align-items-center">
-          <p className="heading">Title:</p>
-          <p className="title">{data.title}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">App Code:</p>
-          <p className="title">{data.appCode}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">Project Id:</p>
-          <p className="title">{data.projectId}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">model Id:</p>
-          <p className="title">{data.modelId}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">Version:</p>
-          <p className="title">{data.version}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">Created At:</p>
-          <p className="title">{data.createdAt}</p>
-        </div>
-        <div className="d-flex align-items-center">
-          <p className="heading">Updated At:</p>
-          <p className="title">{data.updatedAt}</p>
+      <div className="ViewDetails">
+        <div className="viewCard">
+          <h3>Project Details</h3>
+          <div className="projectDetails">
+            <div className="ViewEl">
+              <p className="title">Project Name</p>
+              <div className="subTitle">{data.title}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Project Id</p>
+              <div className="subTitle">{data.projectId}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">App Code</p>
+              <div className="subTitle">{data.appCode}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Model Id</p>
+              <div className="subTitle">{data.modelId}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Created At</p>
+              <div className="subTitle">{data.createdAt}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Updated At</p>
+              <div className="subTitle">{data.updatedAt}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Version</p>
+              <div className="subTitle">{data.version}</div>
+            </div>
+            <div className="ViewEl">
+              <p className="title">Description</p>
+              <div className="subTitle descriptionEl">{data.description}</div>
+            </div>
+          </div>
+          <Button variant="primary" className="CreateBtn" onClick={backHome}>
+            Back
+          </Button>
         </div>
       </div>
-      <Button variant="primary" className="CreateBtn" onClick={backHome}>
-        Back
-      </Button>
     </div>
   );
 }

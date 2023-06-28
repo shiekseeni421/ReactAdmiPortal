@@ -1,3 +1,4 @@
+//Login Css
 .LoginPage {
   background-color: lightgreen;
   height: 100vh;
@@ -39,6 +40,7 @@
   }
 }
 
+//Home Page CSS
 .HomePageEl {
   display: flex;
   flex-direction: column;
@@ -46,6 +48,7 @@
   .CreateBtn {
     align-self: center;
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .table-container {
@@ -63,6 +66,7 @@
   }
 }
 
+//Create page Css
 .CreatePageEl {
   p {
     margin: 0;
@@ -145,39 +149,61 @@
   }
 }
 
+//view page
 .viewPageCont {
   p {
     margin: 0;
     padding: 0;
-    color: #ffffff;
   }
   display: flex;
   flex-direction: column;
 
-  .ViewCard {
-    padding-left: 10px;
-    margin-top: 80px;
-    background-color: #15172b;
-    align-self: center;
+  .ViewDetails {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding: 25px;
-    width: 400px;
-    flex-wrap: wrap;
+    justify-content: center;
+    .viewCard {
+      padding: 10px;
+      width: 65%;
+      display: flex;
+      flex-direction: column;
 
-    .heading {
-      font-size: 18px;
+      .projectDetails {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .ViewEl {
+        margin-top: 20px;
+        margin-left: 20px;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .subTitle {
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        background-color: skyblue;
+        padding: 10px;
+        width: 350px;
+      }
+      .descriptionEl {
+        width: 350px;
+        height: 65px;
+        text-align: left;
+        overflow: scroll;
+      }
     }
-    .title {
-      padding-left: 5px;
+    .CreateBtn {
+      align-self: center;
+      margin-top: 25px;
     }
   }
 
-  .CreateBtn {
-    align-self: center;
-    margin-top: 25px;
-  }
   ::-webkit-scrollbar {
     display: none;
   }

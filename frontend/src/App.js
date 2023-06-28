@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import CreatePage from "./pages/CreatePage";
 import UpdatePage from "./pages/UpdatePage";
 import ViewPage from "./pages/ViewPage";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
